@@ -2,24 +2,23 @@ import {Fighter} from "./fighter";
 import {fight} from "./fight";
 import {ImprovedFighter} from "./improvedFighter";
 
-const improvedFighterHealth = 200;
+const improvedFighterHealth = 150;
 const fighterHealth = 100;
+const points = [1, 1, 2, 1, 1];
 
-let fighterRoman = new Fighter('Romko', 1, fighterHealth);
-let fighterRostik = new ImprovedFighter('Borya', 2, improvedFighterHealth);
+const fighterRoman = new Fighter('Romko', 4, fighterHealth);
+const fighterRostik = new ImprovedFighter('Borya', 2, improvedFighterHealth);
 
 fight(fighterRoman, fighterRostik, 1, 1, 2, 1)
     .then(value => showMessage(value))
-    .catch(reason => showError(reason));
+    .then(_ => {
+        fighterRoman.health = fighterHealth;
+        fighterRostik.health = improvedFighterHealth;
 
-fighterRoman.health = fighterHealth;
-fighterRostik.health = improvedFighterHealth;
-let points = [1, 1, 2, 1, 1];
-
-fight(fighterRoman, fighterRostik, ...points)
+        return fight(fighterRoman, fighterRostik, ...points);
+    })
     .then(value => showMessage(value))
     .catch(reason => showError(reason));
-
 
 function showMessage(message) {
     const parent = document.getElementById('app');
