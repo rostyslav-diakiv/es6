@@ -12,7 +12,7 @@ fight(fighterRoman, fighterRostik, 1, 1, 2, 1)
     .then(value => showMessage(value))
     .catch(reason => showError(reason));
 
-fighterRoman.health = fighterHealth
+fighterRoman.health = fighterHealth;
 fighterRostik.health = improvedFighterHealth;
 let points = [1, 1, 2, 1, 1];
 
